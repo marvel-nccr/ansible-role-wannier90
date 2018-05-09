@@ -26,6 +26,7 @@
     src: "{{ wannier90_download.dest }}"
     dest: "{{ wannier90_code_folder }}"
     remote_src: yes
+  when: wannier90_download.changed
 
 - name: Configure Wannier90
   copy:
