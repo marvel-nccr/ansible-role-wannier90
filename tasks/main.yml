@@ -34,7 +34,7 @@
     dest: "{{ wannier90_topdir }}"
 
 - name: Make Wannier90 executables
-  shell: "make {{ item.target }}"
+  shell: "make {{ item.name }}"
   args:
     creates: "{{ wannier90_topdir }}/{{ item.execname }}"
     chdir: "{{ wannier90_topdir }}"

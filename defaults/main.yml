@@ -7,11 +7,15 @@ wannier90_src: "wannier90-{{ wannier90_version }}"
 wannier90_topdir: "{{ wannier90_code_folder }}/{{wannier90_src}}"
 
 wannier90_executables:
-  - target: wannier
+  - name: wannier
     execname: wannier90.x
-  - target: post
+    plugin: wannier90.wannier90
+    folder: "{{ wannier90_topdir }}"
+  - name: post
     execname: postw90.x
-  - target: w90chk2chk
+    folder: "{{ wannier90_topdir }}"
+  - name: w90chk2chk
     execname: w90chk2chk.x
+    folder: "{{ wannier90_topdir }}"
 
 root_user: root
