@@ -2,10 +2,11 @@
 allow_duplicates: no
 
 galaxy_info:
+  role_name: wannier90
   author: "MARVEL NCCR"
   description: "An ansible role that installs [Wannier90](http://www.wannier.org/) on Ubuntu."
   license: MIT
-  min_ansible_version: 2.5
+  min_ansible_version: 2.7
   platforms:
     - name: Ubuntu
       versions:
@@ -15,5 +16,3 @@ galaxy_info:
     - ubuntu
     - application
     - science
-
-dependencies:
