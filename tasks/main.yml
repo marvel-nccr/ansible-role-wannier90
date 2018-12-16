@@ -4,16 +4,15 @@
   become: true
   become_user: "{{ root_user }}"
   apt:
-    name: "{{ item }}"
-  with_items:
-    # Compilation
-    - build-essential
-    - gfortran
-    - openmpi-common
-    - openmpi-bin
-    - libopenmpi-dev
-    - liblapack-dev
-    - libblas-dev
+    name: 
+      # Compilation
+      - build-essential
+      - gfortran
+      - openmpi-common
+      - openmpi-bin
+      - libopenmpi-dev
+      - liblapack-dev
+      - libblas-dev
 
 - name: Get Wannier90 source
   get_url:
@@ -22,6 +21,7 @@
   register: wannier90_download
 
 - name: Extract Wannier90 source
+  # ansiblelint disable rule:line-length
   unarchive:
     src: "{{ wannier90_download.dest }}"
     dest: "{{ wannier90_code_folder }}"
