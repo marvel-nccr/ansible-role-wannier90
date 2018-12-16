@@ -12,10 +12,11 @@ See `defaults/main.yml`
 
 ## Example Playbook
 
-  - hosts: servers
-    roles:
-    - role: marvel-nccr.wannier90
-
+```yaml
+- hosts: servers
+  roles:
+  - role: marvel-nccr.wannier90
+```
 ## License
 
 MIT

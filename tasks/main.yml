@@ -1,10 +1,10 @@
+---
 # Will only download once
 - name: Install libraries
   become: true
   become_user: "{{ root_user }}"
   apt:
-      name: "{{ item }}"
-      state: latest
+    name: "{{ item }}"
   with_items:
     # Compilation
     - build-essential
@@ -25,7 +25,7 @@
   unarchive:
     src: "{{ wannier90_download.dest }}"
     dest: "{{ wannier90_code_folder }}"
-    remote_src: yes
+    remote_src: true
   when: wannier90_download.changed
 
 - name: Configure Wannier90
@@ -34,7 +34,7 @@
     dest: "{{ wannier90_topdir }}"
 
 - name: Make Wannier90 executables
-  shell: "make {{ item.name }}"
+  command: "make {{ item.name }}"
   args:
     creates: "{{ wannier90_topdir }}/{{ item.execname }}"
     chdir: "{{ wannier90_topdir }}"
@@ -42,7 +42,12 @@
   register: wannier90_make
 
 - name: Clean object files
-  shell: "rm -f {{ wannier90_topdir }}/src/obj/* {{ wannier90_topdir }}/src/objp/*"
+  file:
+    state: absent
+    path: "{{ item }}"
+  with_items:
+    - "{{ wannier90_topdir }}/src/obj/"
+    - "{{ wannier90_topdir }}/src/objp/"
   when: clean is defined and clean
 
 - name: Wannier90 tests
@@ -68,6 +73,6 @@
     section: "Wannier90"
     option: "usage"
     value: >-
-        Wannier90 is installed in {{ wannier90_topdir }}. 
-        'wannier90.x', 'postw90.x', ... have been added to the PATH
+      Wannier90 is installed in {{ wannier90_topdir }}.
+      'wannier90.x', 'postw90.x', ... have been added to the PATH
   when: release_notes is defined and release_notes
