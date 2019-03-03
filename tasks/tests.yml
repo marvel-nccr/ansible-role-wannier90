@@ -1,6 +1,6 @@
 ---
 - name: run Wannier90 default tests
-  shell: "make run-tests"
+  shell: "make tests"
   args:
     chdir: "{{ wannier90_topdir }}/test-suite"
   register: wannier90_tests
