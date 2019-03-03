@@ -1,5 +1,5 @@
 ---
-wannier90_version: "2.1"
+wannier90_version: "3.0"
 wannier90_src_archive: "wannier90-{{ wannier90_version }}.tar.gz"
 wannier90_url: "https://github.com/wannier-developers/wannier90/archive/v2.1.tar.gz"
 
