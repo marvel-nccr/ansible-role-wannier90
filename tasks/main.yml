@@ -12,14 +12,15 @@
       - libopenmpi-dev
       - liblapack-dev
       - libblas-dev
-         
+
 - name: Install libraries
   become: true
   become_user: "{{ root_user }}"
   pip:
     name:
-      - configparser  # needed for 'make clean'
-         
+      # needed for 'make clean'
+      - configparser
+
 # Will only download once
 - name: Get Wannier90 source
   get_url:
