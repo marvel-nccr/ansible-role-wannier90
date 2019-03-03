@@ -1,5 +1,4 @@
 ---
-# Will only download once
 - name: Install libraries
   become: true
   become_user: "{{ root_user }}"
@@ -13,7 +12,15 @@
       - libopenmpi-dev
       - liblapack-dev
       - libblas-dev
-
+         
+- name: Install libraries
+  become: true
+  become_user: "{{ root_user }}"
+  pip:
+    name:
+      - configparser  # needed for 'make clean'
+         
+# Will only download once
 - name: Get Wannier90 source
   get_url:
     url: "{{ wannier90_url }}"
