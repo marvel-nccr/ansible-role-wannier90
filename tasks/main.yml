@@ -12,8 +12,9 @@
       - libopenmpi-dev
       - liblapack-dev
       - libblas-dev
+      - python-pip
 
-- name: Install libraries
+- name: Install python packages
   become: true
   become_user: "{{ root_user }}"
   pip:
