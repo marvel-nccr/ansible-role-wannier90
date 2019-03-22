@@ -1,12 +1,6 @@
 ---
 - name: run Wannier90 default tests
-  shell: "make tests"
+  command: "make tests"
   args:
     chdir: "{{ wannier90_topdir }}"
   register: wannier90_tests
-
-- name: run Wannier90 default tests
-  shell: "make clean"
-  args:
-    chdir: "{{ wannier90_topdir }}"
-  when: wannier90_tests
