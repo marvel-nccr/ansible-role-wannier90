@@ -3,4 +3,4 @@
   command: "make tests"
   args:
     chdir: "{{ wannier90_topdir }}"
-  register: wannier90_tests
+    creates: "{{ wannier90_topdir }}/test-suite/tests/testw90_basic1/wannier.chk"
