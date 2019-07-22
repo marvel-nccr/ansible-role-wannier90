@@ -1,7 +1,6 @@
 ---
 - name: Install libraries
   become: true
-  become_user: "{{ root_user }}"
   apt:
     name:
       # Compilation
@@ -16,7 +15,6 @@
 
 - name: Install python packages
   become: true
-  become_user: "{{ root_user }}"
   pip:
     name:
       # needed for 'make clean'
@@ -50,14 +48,14 @@
   with_items: "{{ wannier90_executables }}"
   register: wannier90_make
 
-- name: Clean object files
-  file:
-    state: absent
-    path: "{{ item }}"
-  with_items:
-    - "{{ wannier90_topdir }}/src/obj/"
-    - "{{ wannier90_topdir }}/src/objp/"
-  when: clean is defined and clean
+- name: Install Wannier90 executables
+  copy:
+    src: "{{ wannier90_topdir }}/{{ item.execname }}"
+    dest: "{{ item.folder }}"
+    remote_src: true
+    mode: '0755'
+  with_items: "{{ wannier90_executables }}"
+  register: wannier90_make
 
 - name: Wannier90 tests
   import_tasks: tests.yml
@@ -68,11 +66,6 @@
   args:
     chdir: "{{ wannier90_topdir }}"
   when: clean is defined and clean
-
-- name: "Put a line in ~/.profile to add W90 to the path"
-  lineinfile:
-    path: "${HOME}/.profile"
-    line: "export PATH=${PATH}:{{ wannier90_topdir }}"
 
 - include_role:
     name: release_notes
