@@ -49,6 +49,7 @@
   register: wannier90_make
 
 - name: Install Wannier90 executables
+  become: true
   copy:
     src: "{{ wannier90_topdir }}/{{ item.execname }}"
     dest: "{{ item.folder }}/"
