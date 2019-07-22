@@ -51,7 +51,7 @@
 - name: Install Wannier90 executables
   copy:
     src: "{{ wannier90_topdir }}/{{ item.execname }}"
-    dest: "{{ item.folder }}"
+    dest: "{{ item.folder }}/"
     remote_src: true
     mode: '0755'
   with_items: "{{ wannier90_executables }}"
