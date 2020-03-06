@@ -11,7 +11,7 @@
       - libopenmpi-dev
       - liblapack-dev
       - libblas-dev
-      - python-pip
+      - python3-pip
 
 - name: Install python packages
   become: true

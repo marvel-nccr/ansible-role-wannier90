@@ -1,6 +1,9 @@
 ---
 - name: run Wannier90 default tests
-  command: "make tests"
+  command: "make {{ item }}"
   args:
     chdir: "{{ wannier90_topdir }}"
     creates: "{{ wannier90_topdir }}/test-suite/tests/testw90_basic1/wannier.chk"
+  with_items:
+    - test-serial
+    - test-parallel
