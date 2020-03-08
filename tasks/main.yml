@@ -82,6 +82,6 @@
     section: "Wannier90"
     option: "usage"
     value: >-
-      Wannier90 is installed in {{ wannier90_topdir }}.
+      Wannier90 is installed in {{ wannier90_prefix }}.
       'wannier90.x', 'postw90.x', ... have been added to the PATH
   when: release_notes is defined and release_notes
