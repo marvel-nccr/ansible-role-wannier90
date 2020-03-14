@@ -10,12 +10,12 @@ wannier90_prefix: "/usr/local"
 
 wannier90_executables:
   - name: wannier
-    execname: wannier90.x
+    executable: wannier90.x
     plugin: wannier90.wannier90
     folder: "{{ wannier90_prefix }}/bin"
   - name: post
-    execname: postw90.x
+    executable: postw90.x
     folder: "{{ wannier90_prefix }}/bin"
   - name: w90chk2chk
-    execname: w90chk2chk.x
+    executable: w90chk2chk.x
     folder: "{{ wannier90_prefix }}/bin"
