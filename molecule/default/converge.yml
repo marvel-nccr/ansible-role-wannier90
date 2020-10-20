@@ -1,7 +1,6 @@
 ---
 - name: Converge
   hosts: all
-  remote_user: ubuntu
 
   pre_tasks:
     - name: Update apt cache.
