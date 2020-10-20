@@ -3,7 +3,7 @@
 
   vars:
     # test that build files can be cleaned
-    - clean: true
+  - clean: true
 
   roles:
-    - role: "marvel-nccr.wannier90"
+  - role: "marvel-nccr.wannier90"
