@@ -1,24 +1,24 @@
----
 - name: Install libraries
   become: true
   apt:
     name:
       # Compilation
-      - build-essential
-      - gfortran
-      - openmpi-common
-      - openmpi-bin
-      - libopenmpi-dev
-      - liblapack-dev
-      - libblas-dev
-      - python3-pip
+    - git
+    - build-essential
+    - gfortran
+    - openmpi-common
+    - openmpi-bin
+    - libopenmpi-dev
+    - liblapack-dev
+    - libblas-dev
+    - python3-pip
 
 - name: Install python packages
   become: true
   pip:
     name:
       # needed for 'make clean'
-      - configparser
+    - configparser
 
 # Will only download once
 - name: Get Wannier90 source
@@ -65,9 +65,12 @@
   command: "make clean"
   args:
     chdir: "{{ wannier90_topdir }}"
+  environment:
+    PYTHONPATH: "{{ wannier90_python_path }}"
   when: clean is defined and clean
 
-- include_role:
+- name: Add release notes (version)
+  include_role:
     name: release_notes
   vars:
     section: "Wannier90"
@@ -75,7 +78,8 @@
     value: "{{ wannier90_version }}"
   when: release_notes is defined and release_notes
 
-- include_role:
+- name: Add release notes (usage)
+  include_role:
     name: release_notes
   vars:
     section: "Wannier90"

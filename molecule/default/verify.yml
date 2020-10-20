@@ -1,0 +1,9 @@
+- name: Verify clean
+  hosts: all
+
+  vars:
+    # test that build files can be cleaned
+    - clean: true
+
+  roles:
+    - role: "marvel-nccr.wannier90"

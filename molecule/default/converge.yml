@@ -1,20 +1,16 @@
----
 - name: Converge
   hosts: all
 
   pre_tasks:
-    - name: Update apt cache.
-      become: true
-      apt:
-        name:
-        - software-properties-common
-        - git
-        update_cache: yes 
-        cache_valid_time: 600
-      when: ansible_os_family == 'Debian'
+  - name: Standard apt setup
+    become: true
+    apt:
+      update_cache: yes
+      cache_valid_time: 600
+    when: ansible_os_family == 'Debian'
 
   vars:
-    - run_tests: true
+  - run_tests: false
 
   roles:
-    - role: "marvel-nccr.wannier90"
+  - role: "marvel-nccr.wannier90"
