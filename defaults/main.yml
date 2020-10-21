@@ -7,8 +7,6 @@ wannier90_src: "wannier90-{{ wannier90_version }}"
 wannier90_topdir: "{{ wannier90_code_folder }}/{{wannier90_src}}"
 wannier90_prefix: "/usr/local"
 
-wannier90_python_path: "{{ ansible_python_interpreter | default('/usr/bin/python') }}"
-
 wannier90_executables:
 - name: wannier
   executable: wannier90.x
