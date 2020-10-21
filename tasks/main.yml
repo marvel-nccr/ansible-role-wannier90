@@ -21,14 +21,14 @@
     dest: "{{ wannier90_code_folder }}/{{  wannier90_src_archive }}"
   register: wannier90_download
 
-- name: Extract Wannier90 source
+- name: Extract Wannier90 source  # noqa 208
   unarchive:
     src: "{{ wannier90_download.dest }}"
     dest: "{{ wannier90_code_folder }}"
     remote_src: true
   when: wannier90_download.changed  # noqa 503
 
-- name: Configure Wannier90
+- name: Configure Wannier90  # noqa 208
   copy:
     src: "make.inc"
     dest: "{{ wannier90_topdir }}"
