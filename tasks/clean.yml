@@ -1,0 +1,12 @@
+- name: install configparser
+  pip:
+    name:
+    - configparser
+    # Note: we have to specify the base pip here,
+    # since this is what the `make` scripts call
+    executable: pip
+
+- name: make clean
+  command: "make clean"  # noqa 301
+  args:
+    chdir: "{{ wannier90_topdir }}"

@@ -1,4 +1,3 @@
----
 wannier90_version: "3.1.0"
 wannier90_src_archive: "wannier90-{{ wannier90_version }}.tar.gz"
 wannier90_url: "https://github.com/wannier-developers/wannier90/archive/v{{ wannier90_version }}.tar.gz"
@@ -9,13 +8,13 @@ wannier90_topdir: "{{ wannier90_code_folder }}/{{wannier90_src}}"
 wannier90_prefix: "/usr/local"
 
 wannier90_executables:
-  - name: wannier
-    executable: wannier90.x
-    plugin: wannier90.wannier90
-    folder: "{{ wannier90_prefix }}/bin"
-  - name: post
-    executable: postw90.x
-    folder: "{{ wannier90_prefix }}/bin"
-  - name: w90chk2chk
-    executable: w90chk2chk.x
-    folder: "{{ wannier90_prefix }}/bin"
+- name: wannier
+  executable: wannier90.x
+  plugin: wannier90.wannier90
+  folder: "{{ wannier90_prefix }}/bin"
+- name: post
+  executable: postw90.x
+  folder: "{{ wannier90_prefix }}/bin"
+- name: w90chk2chk
+  executable: w90chk2chk.x
+  folder: "{{ wannier90_prefix }}/bin"

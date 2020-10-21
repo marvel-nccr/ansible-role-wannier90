@@ -1,24 +1,18 @@
----
 - name: Install libraries
   become: true
   apt:
     name:
       # Compilation
-      - build-essential
-      - gfortran
-      - openmpi-common
-      - openmpi-bin
-      - libopenmpi-dev
-      - liblapack-dev
-      - libblas-dev
-      - python3-pip
-
-- name: Install python packages
-  become: true
-  pip:
-    name:
-      # needed for 'make clean'
-      - configparser
+    - git
+    - build-essential
+    - gfortran
+    - openmpi-common
+    - openmpi-bin
+    - libopenmpi-dev
+    - liblapack-dev
+    - libblas-dev
+    - python3-pip
+    - python3-venv
 
 # Will only download once
 - name: Get Wannier90 source
@@ -27,15 +21,14 @@
     dest: "{{ wannier90_code_folder }}/{{  wannier90_src_archive }}"
   register: wannier90_download
 
-- name: Extract Wannier90 source
-  # ansiblelint disable rule:line-length
+- name: Extract Wannier90 source  # noqa 208
   unarchive:
     src: "{{ wannier90_download.dest }}"
     dest: "{{ wannier90_code_folder }}"
     remote_src: true
-  when: wannier90_download.changed
+  when: wannier90_download.changed  # noqa 503
 
-- name: Configure Wannier90
+- name: Configure Wannier90  # noqa 208
   copy:
     src: "make.inc"
     dest: "{{ wannier90_topdir }}"
@@ -62,13 +55,12 @@
   import_tasks: tests.yml
   when: wannier90_make.changed and run_tests is defined and run_tests
 
-- name: make clean
-  command: "make clean"
-  args:
-    chdir: "{{ wannier90_topdir }}"
+- name: Clean build files
+  import_tasks: clean.yml
   when: clean is defined and clean
 
-- include_role:
+- name: Add release notes (version)
+  include_role:
     name: release_notes
   vars:
     section: "Wannier90"
@@ -76,7 +68,8 @@
     value: "{{ wannier90_version }}"
   when: release_notes is defined and release_notes
 
-- include_role:
+- name: Add release notes (usage)
+  include_role:
     name: release_notes
   vars:
     section: "Wannier90"
