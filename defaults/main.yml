@@ -11,10 +11,13 @@ wannier90_executables:
 - name: wannier
   executable: wannier90.x
   plugin: wannier90.wannier90
+  version: "{{ wannier90_version }}"
   folder: "{{ wannier90_prefix }}/bin"
 - name: post
   executable: postw90.x
+  version: "{{ wannier90_version }}"
   folder: "{{ wannier90_prefix }}/bin"
 - name: w90chk2chk
   executable: w90chk2chk.x
+  version: "{{ wannier90_version }}"
   folder: "{{ wannier90_prefix }}/bin"
